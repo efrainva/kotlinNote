@@ -1,6 +1,6 @@
 package com.be.service
 
-import com.be.dto.Note
+import com.be.models.Jot
 import com.be.models.UserModel
 import com.be.repositories.UserRepo
 
@@ -21,15 +21,25 @@ class UserService(private val userRepo: UserRepo) {
     fun getById(id: String):UserModel{
         return this.userRepo.getById(id)
     }
-    fun updateNote(id:String,user: Note):UserModel{
+    fun updateNote(id:String,a:String,b:String):UserModel{
+
         val userUpdate = getById(id)
+        var newnote = Jot()
+        newnote.title = a
+        newnote.note = b
         val updatedUser = userRepo.save(
             userUpdate.apply{
-                title = user.Title
-                note = user.Note
+                this.note.add(newnote)
             }
-
         )
         return updatedUser
+
     }
+
+
 }
+
+private fun <E> MutableList<E>.add(element: Jot) {
+
+}
+

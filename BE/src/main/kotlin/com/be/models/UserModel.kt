@@ -1,6 +1,6 @@
 package com.be.models
 
-import com.be.dto.Note
+import com.be.dto.Jot
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.index.Indexed
@@ -27,11 +27,11 @@ class UserModel{
         }
     @Field(name = "createDate")
     var createdDate = LocalDateTime.now()
-    
-    @Field(name = "title")
-    var title = ""
-    @Field(name = "note")
-    var note = ""
+//    @Field( name = "updated")
+//    var updatedDate = LocalDateTime.now()
+    @Field(name = "jot")
+    var note = mutableListOf<com.be.models.Jot>()
+
 
 
     // comparing the passcode that is sent to us from the login endpoint/function and the passcode we have in our database

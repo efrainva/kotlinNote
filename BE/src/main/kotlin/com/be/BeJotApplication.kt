@@ -18,25 +18,28 @@ fun main(args: Array<String>) {
 class Man{
 
 //	learning simple object array concepts in koltin
-//	fun index() {
-//	var ob = Message("1","message one ", mutableListOf( temp("wow","ok"),temp("a","a")))
-//		ob.ms.add(temp("wow","ok"))
-//	print(ob)
-//
-//}
-
-
 	@GetMapping
-	fun index(): List<Message> = mutableListOf(
-		Message("1","message one ", listOf( temp("wow","ok"),temp("a","a"))),
-//		Message("2", "message two")
+	fun index() {
+	var ob = Message("1","message one ", mutableListOf( temp("wow","ok"),temp("a","a")))
+		ob.ms.add(temp("wow","ok"))
+	print(ob)
 
-	)
-//	 strictly used to store data
-	 data class obs (var obs : String )
 
 }
 
 
-data class Message(val id: String,val text:String, var ms: List<temp>)
+//	@GetMapping
+//	fun index(): List<Message> = mutableListOf(
+//		Message("1","message one ", listOf( temp("wow","ok"),temp("a","a"))),
+////		Message("2", "message two")
+//
+//	)
+////	 strictly used to store data
+//	 data class obs (var obs : String )
+//
+
+}
+
+
+data class Message(val id: String,val text:String, var ms: MutableList<temp>)
 data class temp (var no:String,var e:String)

@@ -2,12 +2,11 @@ package com.be.controllers
 
 import com.be.dto.Message
 import com.be.dto.Login
-import com.be.dto.Note
+import com.be.dto.Jot
 import com.be.models.UserModel
 import com.be.service.UserService
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
-import org.springframework.http.HttpStatus
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -38,7 +37,6 @@ class Auth(private val userService: UserService){
         }
 
         val issuer = user.id
-
 
         val jwt = Jwts.builder()
             .setIssuer(issuer)
@@ -97,14 +95,16 @@ class Auth(private val userService: UserService){
     }
 
     @PutMapping("user/{id}")
-    fun addnote(@CookieValue("jwt") jwt: String?,@PathVariable("id") userid:String,@RequestBody request:Note): ResponseEntity<Any>{
+    fun addnote(@CookieValue("jwt") jwt: String?,@PathVariable("id") userid:String,@RequestBody request:Jot): ResponseEntity<Any>{
         try {
             val body = Jwts.parser().setSigningKey("secret").parseClaimsJws(jwt).body
             if (jwt == null) {
                 return ResponseEntity.status(401).body(Message("unauthenticated"))
             }else if(body.issuer == userid){
-                this.userService.updateNote(userid,request)
+
+                this.userService.updateNote(userid,request.title,request.note)
                 return ResponseEntity.ok("updating")
+
             }else{
                 ResponseEntity.status(401).body(Message("wrong user"))
             }
@@ -114,4 +114,7 @@ class Auth(private val userService: UserService){
             return ResponseEntity.status(401).body(Message("unauthenticated"))
         }
     }
+
+
+
 }
