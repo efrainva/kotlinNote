@@ -102,7 +102,7 @@ class Auth(private val userService: UserService){
                 return ResponseEntity.status(401).body(Message("unauthenticated"))
             }else if(body.issuer == userid){
 
-                this.userService.updateNote(userid,request.title,request.note)
+                this.userService.addNote(userid,request.title,request.note)
                 return ResponseEntity.ok("updating")
 
             }else{

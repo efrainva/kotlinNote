@@ -24,8 +24,13 @@ dependencies {
 
 	implementation("org.springframework.boot:spring-boot-starter:2.6.3")
 	implementation("org.springframework.boot:spring-boot-starter-security:2.6.3")
+//	implementation("org.springframework.boot:spring-boot-starter-security-test ")
 	implementation("io.jsonwebtoken:jjwt:0.9.1")
 	implementation("javax.xml.bind:jaxb-api:2.4.0-b180830.0359")
+
+	implementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+	implementation("org.glassfish.jaxb:jaxb-runtime:3.0.1")
+	implementation("junit:junit:4.13.2")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 

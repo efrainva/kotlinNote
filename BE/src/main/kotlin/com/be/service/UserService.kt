@@ -21,7 +21,7 @@ class UserService(private val userRepo: UserRepo) {
     fun getById(id: String):UserModel{
         return this.userRepo.getById(id)
     }
-    fun updateNote(id:String,a:String,b:String):UserModel{
+    fun addNote(id:String,a:String,b:String):UserModel{
 
         val userUpdate = getById(id)
         var newnote = Jot()
